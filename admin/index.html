@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -8560,26 +8560,6 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
                         <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                     </svg>
                 </button>
-                <!-- GitHub 链接 -->
-                <a href="https://github.com/cmliu/edgetunnel" target="_blank" rel="noopener" class="social-link"
-                    title="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" />
-                    </svg>
-                </a>
-                <!-- Telegram 链接 -->
-                <a href="https://t.me/CMLiussss" target="_blank" rel="noopener" class="social-link" title="Telegram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12a12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472c-.18 1.898-.962 6.502-1.36 8.627c-.168.9-.499 1.201-.82 1.23c-.696.065-1.225-.46-1.9-.902c-1.056-.693-1.653-1.124-2.678-1.8c-1.185-.78-.417-1.21.258-1.91c.177-.184 3.247-2.977 3.307-3.23c.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345c-.48.33-.913.49-1.302.48c-.428-.008-1.252-.241-1.865-.44c-.752-.245-1.349-.374-1.297-.789c.027-.216.325-.437.893-.663c3.498-1.524 5.83-2.529 6.998-3.014c3.332-1.386 4.025-1.627 4.476-1.635z" />
-                    </svg>
-                </a>
-                <div class="social-link social-version" id="versionBadge" title="当前版本" role="button" tabindex="0"
-                    onclick="openVersionInfoModal()" onkeydown="onVersionBadgeKeydown(event)" hidden
-                    style="display: none;">
-                    <span id="versionValue"></span>
-                </div>
                 <!-- 返回顶部按钮 -->
                 <button type="button" class="social-link" title="返回顶部" onclick="scrollToTop()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -8597,46 +8577,6 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
             <button type="button" class="modal-close" onclick="closeQRCode()">×</button>
             <div id="qrcodeContainer" class="qrcode-container"></div>
             <button type="button" class="btn btn-primary btn-close-modal" onclick="closeQRCode()">关闭</button>
-        </div>
-    </div>
-
-    <!-- 版本信息气泡 -->
-    <div class="modal-overlay" id="versionInfoModal" onclick="closeVersionInfoModal(event)">
-        <div class="modal version-info-modal" onclick="event.stopPropagation()">
-            <button type="button" class="modal-close" onclick="closeVersionInfoModal()">×</button>
-            <h2 class="version-info-title">🚀 关于 edgetunnel</h2>
-            <div class="version-info-summary state-outdated" id="versionInfoSummary">
-                <p id="latestVersionInfoText" class="version-info-line"><strong>最新版本:</strong> <span
-                        id="latestVersionInfoValue">v0</span></p>
-                <p id="currentVersionInfoText" class="version-info-line"><strong>当前版本:</strong> <span
-                        id="currentVersionInfoValue">v0</span> <span id="currentVersionStateText"
-                        class="version-state-tip is-outdated">需要更新</span></p>
-            </div>
-            <div class="version-info-actions">
-                <button type="button" class="btn btn-version-copy" onclick="copyLatestWorkerSourceToClipboard()">📋
-                    复制最新Worker.js源码 到剪贴板</button>
-                <button type="button" class="btn btn-version-download" onclick="openLatestPagesZipDownload()">📦
-                    下载最新Pages.zip源码 上传部署</button>
-                <button type="button" class="btn btn-version-changelog" id="versionChangelogToggleBtn"
-                    onclick="openVersionChangelogModal()">📜 查看更新日志</button>
-                <button type="button" class="btn btn-secondary" onclick="closeVersionInfoModal()">取消</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 更新日志弹窗 -->
-    <div class="modal-overlay" id="versionChangelogModal" onclick="closeVersionChangelogModal(event)">
-        <div class="modal version-changelog-modal" onclick="event.stopPropagation()">
-            <button type="button" class="modal-close" onclick="closeVersionChangelogModal()">×</button>
-            <h2 class="version-info-title">📜 更新日志</h2>
-            <div class="version-changelog-wrapper">
-                <div class="version-changelog-content" id="versionChangelogContent">
-                    <p class="version-changelog-placeholder">等待加载更新日志...</p>
-                </div>
-            </div>
-            <div class="version-changelog-actions">
-                <button type="button" class="btn btn-secondary" onclick="closeVersionChangelogModal()">关闭</button>
-            </div>
         </div>
     </div>
 
@@ -14443,7 +14383,6 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
                 currentConfig = await response.json();
                 originalConfig = JSON.parse(JSON.stringify(currentConfig));
                 renderUI();
-                loadVersionByUUID(currentConfig.UUID);
                 // 设置网页标题
                 document.title = `${currentConfig.优选订阅生成?.SUBNAME || 'edgetunnel'} 设置页面 - 管理后台`;
             } catch (error) {
@@ -14482,15 +14421,21 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
                 }
             }
 
-            // 订阅链接
-            const token = currentConfig.优选订阅生成?.TOKEN;
-            const host = window.location.host;
-            const link = currentConfig.LINK;
-            document.getElementById('LinkURL').value = currentConfig.LINK;
-            document.getElementById('subLink').value = `https://${host}/sub?token=${token}`;
-            document.getElementById('base64Link').value = `https://${host}/sub?token=${token}&b64`;
-            document.getElementById('clashLink').value = `https://${host}/sub?token=${token}&clash`;
-            document.getElementById('singboxLink').value = `https://${host}/sub?token=${token}&sb`;
+            // 订阅链接（Worker 注入多订阅模块时会替换模块1，下列 DOM 可能不存在）
+            const linkUrlEl = document.getElementById('LinkURL');
+            if (linkUrlEl) {
+                const token = currentConfig.优选订阅生成?.TOKEN;
+                const host = window.location.host;
+                linkUrlEl.value = currentConfig.LINK;
+                const subLink = document.getElementById('subLink');
+                const base64Link = document.getElementById('base64Link');
+                const clashLink = document.getElementById('clashLink');
+                const singboxLink = document.getElementById('singboxLink');
+                if (subLink) subLink.value = `https://${host}/sub?token=${token}`;
+                if (base64Link) base64Link.value = `https://${host}/sub?token=${token}&b64`;
+                if (clashLink) clashLink.value = `https://${host}/sub?token=${token}&clash`;
+                if (singboxLink) singboxLink.value = `https://${host}/sub?token=${token}&sb`;
+            }
 
             // 编辑订阅生成
             const local = currentConfig.优选订阅生成?.local ?? true;

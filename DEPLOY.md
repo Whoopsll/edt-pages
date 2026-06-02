@@ -2,7 +2,7 @@
 
 本目录是从官方 [EDT-Pages/EDT-Pages.github.io](https://github.com/EDT-Pages/EDT-Pages.github.io) 克隆的**静态管理页**，供你的 VPN Worker 拉取 `/login`、`/admin` 等页面。
 
-你的 Worker（`_worker.js`）通过环境变量 **`ADMIN_PAGES`** 指向你部署后的根地址；未配置时仍用官方 `https://edt-pages.github.io`。
+你的 Worker（`_worker.js`）默认已指向 `https://whoopsll.github.io/edt-pages`；也可在 VPN 项目环境变量 **`ADMIN_PAGES`** 覆盖（勿末尾 `/`）。
 
 ---
 
@@ -10,9 +10,14 @@
 
 | 位置 | 改动 |
 |------|------|
-| `admin/index.html` | 模式切换按钮：`高级配置` / `基础配置`（原「我是高手/小白」） |
+| `admin/index.html` | 模式切换：`高级配置` / `基础配置` |
+| `admin/index.html` | 移除底部 GitHub、Telegram、版本升级弹窗 |
+| `admin/index.html` | `renderUI` 订阅链接改为可选 DOM（兼容 Worker 多订阅替换） |
+| `admin/index.html` | 不再调用 `loadVersionByUUID` |
 
-多订阅模块、删 GitHub/Telegram 等仍在 **Worker** 的 `注入订阅管理到管理页` / `清理管理页HTML` 里处理，**不必**在模板里改。
+**多订阅列表 UI** 仍由 VPN 的 `_worker.js` 在运行时注入（替换 `<!-- 模块1: 订阅链接 -->`），不必写进本仓库。
+
+**以后改管理页**：只改本仓库 → push → GitHub Pages 自动更新；**不必**再改 Worker 里的 HTML 字符串替换。
 
 ---
 
