@@ -7819,72 +7819,35 @@
             </div>
 
             <!-- 模块1: 订阅链接 -->
-            <div class="module">
+            <div class="module" id="subLinksModule">
                 <div class="module-title" onclick="toggleModule(this)">
                     📋 获取节点链接
                     <svg class="collapse-icon" viewBox="0 0 24 24">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </div>
-                <div class="form-group">
-                    <label for="LinkURL">节点链接格式</label>
-                    <div class="input-wrapper subscription-link-wrapper">
-                        <input type="text" id="LinkURL" title="节点链接格式" readonly>
-                        <div class="btn-container">
-                            <button type="button" class="btn btn-qrcode" onclick="showQRCode('LinkURL')">📱二维码</button>
-                            <button type="button" class="btn btn-primary"
-                                onclick="copySubscription('LinkURL')">复制节点</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="subLink">自适应订阅</label>
-                    <div class="input-wrapper subscription-link-wrapper">
-                        <input type="text" id="subLink" title="自适应订阅" readonly>
-                        <div class="btn-container">
-                            <button type="button" class="btn btn-qrcode" onclick="showQRCode('subLink')">📱二维码</button>
-                            <button type="button" class="btn btn-primary"
-                                onclick="copySubscription('subLink')">复制订阅</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="module-content">
+                    <p style="margin-bottom:16px;color:#6b7280;font-size:14px">每条链接独立 UUID 与月流量配额，创建后复制订阅地址发给用户。</p>
                     <div class="form-group">
-                        <label for="base64Link">Base64订阅</label>
-                        <div class="input-wrapper subscription-link-wrapper">
-                            <input type="text" id="base64Link" title="Base64订阅" readonly>
-                            <div class="btn-container">
-                                <button type="button" class="btn btn-qrcode"
-                                    onclick="showQRCode('base64Link')">📱二维码</button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="copySubscription('base64Link')">复制订阅</button>
-                            </div>
+                        <label for="subLinkName">备注名称</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="subLinkName" placeholder="例如：客户A">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="clashLink">Clash订阅</label>
-                        <div class="input-wrapper subscription-link-wrapper">
-                            <input type="text" id="clashLink" title="Clash订阅" readonly>
-                            <div class="btn-container">
-                                <button type="button" class="btn btn-qrcode"
-                                    onclick="showQRCode('clashLink')">📱二维码</button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="copySubscription('clashLink')">复制订阅</button>
-                            </div>
+                        <label for="subLinkQuotaGB">月流量配额 (GB)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="subLinkQuotaGB" min="1" step="1" value="50">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="singboxLink">SingBox订阅</label>
-                        <div class="input-wrapper subscription-link-wrapper">
-                            <input type="text" id="singboxLink" title="SingBox订阅" readonly>
-                            <div class="btn-container">
-                                <button type="button" class="btn btn-qrcode"
-                                    onclick="showQRCode('singboxLink')">📱二维码</button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="copySubscription('singboxLink')">复制订阅</button>
-                            </div>
+                        <label>&nbsp;</label>
+                        <div class="input-wrapper" style="display:flex;justify-content:space-between;align-items:center">
+                            <button type="button" class="btn btn-primary" id="subLinkCreateBtn" onclick="return window.__subLinksCreate&&window.__subLinksCreate(event)">创建链接</button>
+                            <button type="button" class="btn btn-secondary" id="subLinkRefreshBtn" onclick="return window.__subLinksRefresh&&window.__subLinksRefresh(event)">🔄 刷新列表</button>
                         </div>
                     </div>
+                    <div id="subLinksList" style="margin-top:20px"><span class="loading"></span> 加载中...</div>
                 </div>
             </div>
 
@@ -14421,21 +14384,7 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
                 }
             }
 
-            // 订阅链接（Worker 注入多订阅模块时会替换模块1，下列 DOM 可能不存在）
-            const linkUrlEl = document.getElementById('LinkURL');
-            if (linkUrlEl) {
-                const token = currentConfig.优选订阅生成?.TOKEN;
-                const host = window.location.host;
-                linkUrlEl.value = currentConfig.LINK;
-                const subLink = document.getElementById('subLink');
-                const base64Link = document.getElementById('base64Link');
-                const clashLink = document.getElementById('clashLink');
-                const singboxLink = document.getElementById('singboxLink');
-                if (subLink) subLink.value = `https://${host}/sub?token=${token}`;
-                if (base64Link) base64Link.value = `https://${host}/sub?token=${token}&b64`;
-                if (clashLink) clashLink.value = `https://${host}/sub?token=${token}&clash`;
-                if (singboxLink) singboxLink.value = `https://${host}/sub?token=${token}&sb`;
-            }
+            // 订阅链接：见 admin/sub-links.js 多订阅模块
 
             // 编辑订阅生成
             const local = currentConfig.优选订阅生成?.local ?? true;
@@ -23109,6 +23058,15 @@ vless://7b102311-43fd-4e8f-977e-8090623c101d@edt-pages.github.io:443?security=tl
         }
 
     </script>
+    <style>
+        #subLinksList .sub-link-item { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+        #subLinksList .sub-link-item:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        #subLinksList .sub-actions-wrap,
+        #subLinksList .sub-format-wrap { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        #subLinksList .sub-muted { color: #6b7280; font-size: 12px; font-weight: 400; }
+        html.dark-mode #subLinksList .sub-link-item { border-top-color: #374151; }
+    </style>
+    <script src="sub-links.js"></script>
 </body>
 
 </html>

@@ -10,14 +10,14 @@
 
 | 位置 | 改动 |
 |------|------|
-| `admin/index.html` | 模式切换：`高级配置` / `基础配置` |
+| `admin/index.html` | **「📋 获取节点链接」多订阅模块**（替换官方单订阅 UI） |
+| `admin/sub-links.js` | 多订阅列表逻辑（调 Worker `/admin/sub-links.json`） |
 | `admin/index.html` | 移除底部 GitHub、Telegram、版本升级弹窗 |
-| `admin/index.html` | `renderUI` 订阅链接改为可选 DOM（兼容 Worker 多订阅替换） |
 | `admin/index.html` | 不再调用 `loadVersionByUUID` |
 
-**多订阅列表 UI** 仍由 VPN 的 `_worker.js` 在运行时注入（替换 `<!-- 模块1: 订阅链接 -->`），不必写进本仓库。
+VPN 的 `_worker.js` **只提供 API**（`/admin/sub-links.json` 等），**不再**在运行时注入 HTML/JS。
 
-**以后改管理页**：只改本仓库 → push → GitHub Pages 自动更新；**不必**再改 Worker 里的 HTML 字符串替换。
+**以后改「获取节点链接」**：改 `admin/index.html` + `admin/sub-links.js` → push 即可。
 
 ---
 
